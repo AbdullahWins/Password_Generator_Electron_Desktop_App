@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>DPG</title>
+  </head>
+  <body>
+    <h2>Dumb Password Generator</h2>
+    <main>
+      <p id="selectedPassword">1337</p>
+      <button onclick="getRandomPassword()">Generate Weak Password!</button>
+    </main>
+    <footer>
+      <p>
+        &copy; 2023
+        <a
+          href="http://github.com/abdullahwins"
+          target="_blank"
+          rel="noopener noreferrer"
+          >AbdullahWins</a
+        >. No Rights Reserved.
+      </p>
+    </footer>
+    <script>
+      const { ipcRenderer } = require("electron");
+      async function getRandomPassword() {
+        const randomString = await ipcRenderer.invoke("getRandomPassword");
+        document.getElementById("selectedPassword").textContent = randomString;
+      }
+    </script>
+  </body>
+</html>
